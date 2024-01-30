@@ -1,10 +1,18 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(Application());
 }
 
-class Application extends StatelessWidget {
+class Application extends StatefulWidget {
+  @override
+  State<Application> createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,31 +22,48 @@ class Application extends StatelessWidget {
   }
 }
 
-class getHome extends StatelessWidget {
+class getHome extends StatefulWidget {
+  @override
+  State<getHome> createState() => _getHomeState();
+}
+
+class _getHomeState extends State<getHome> {
+  var top=1;
+
+  var button=1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: _getAppBar(),
-      body: SingleChildScrollView(
-        child: SafeArea(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            
-            Image(image: AssetImage("assets/1.png")),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "شروع بازی",
-                style: TextStyle(fontSize: 30, color: Colors.white),
-              ),
+      body: SafeArea(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          
+          Image(image: AssetImage("assets/$top.png"),
+          height: 100,),
+          TextButton(
+            onPressed: () {
+              setState(() {
+
+                top=Random().nextInt(2)+1;
+                  button=Random().nextInt(2)+1;
+                
+              });
+            },
+            child: Text(
+              "شروع بازی",
+              style: TextStyle(fontSize: 30, color: Colors.white),
             ),
-            Image(image: AssetImage("assets/2.png"))
-          ],
-        )),
-      ),
+          ),
+          Image(image: AssetImage("assets/$button.png"),
+          height: 100,)
+        ],
+      )),
     );
   }
 
